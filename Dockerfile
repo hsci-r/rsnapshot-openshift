@@ -5,6 +5,7 @@ MAINTAINER Eetu Mäkelä <eetu.makela@helsinki.fi>
 VOLUME /backup
 VOLUME /data
 
+ENV BACKUP_NAME=default
 ENV BACKUP_SOURCE=/data
 ENV BACKUP_OPTS=one_fs=1
 ENV BACKUP_RETAIN=3

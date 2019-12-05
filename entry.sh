@@ -6,8 +6,8 @@
 # First part of rsnapshot config
 cat > /tmp/rsnapshot.conf <<EOF
 config_version	1.2
-snapshot_root	/backup/
-no_create_root	1
+snapshot_root	/backup/${BACKUP_NAME}/
+no_create_root	0
 cmd_cp		/bin/cp
 cmd_rm		/bin/rm
 cmd_rsync	/usr/bin/rsync
