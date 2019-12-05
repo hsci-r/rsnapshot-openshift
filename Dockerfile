@@ -1,18 +1,14 @@
 FROM alpine
 
-MAINTAINER Helmuth Breitenfellner <helmuth@breitenfellner.at>
+MAINTAINER Eetu Mäkelä <eetu.makela@helsinki.fi>
 
 VOLUME /backup
 VOLUME /data
 
-ENV BACKUP_NAME=localhost
 ENV BACKUP_SOURCE=/data
 ENV BACKUP_OPTS=one_fs=1
-ENV BACKUP_HOURLY=0
-ENV BACKUP_DAILY=3
-ENV BACKUP_WEEKLY=3
-ENV BACKUP_MONTHLY=3
-ENV BACKUP_YEARLY=3
+ENV BACKUP_RETAIN=3
+ENV BACKUP_ROTATION=daily
 
 RUN touch /ssh-id && touch /backup.cfg
 
