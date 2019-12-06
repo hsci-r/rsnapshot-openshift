@@ -27,7 +27,9 @@ EOF
 # Add the user-provided config file
 cat /backup.cfg >> /tmp/rsnapshot.conf
 
-# start cron - we should be done!
+if [ "${BACKUP_SYNC}" != "" ] || [ "${BACKUP_ROTATION}" == "hourly" ]
+then
 /usr/bin/rsnapshot -c /tmp/rsnapshot.conf sync
+fi
 /usr/bin/rsnapshot -c /tmp/rsnapshot.conf ${BACKUP_ROTATION}
 

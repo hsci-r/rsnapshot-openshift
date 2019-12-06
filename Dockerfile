@@ -10,6 +10,7 @@ ENV BACKUP_SOURCE=/data
 ENV BACKUP_OPTS=one_fs=1
 ENV BACKUP_RETAIN=3
 ENV BACKUP_ROTATION=daily
+ENV BACKUP_SYNC=true
 
 RUN touch /ssh-id && touch /backup.cfg
 

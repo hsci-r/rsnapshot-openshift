@@ -1,0 +1,55 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  labels:
+    app: webanno
+    backup: webanno
+  name: webanno-backup-cronjob
+spec:
+  concurrencyPolicy: Forbid
+  schedule: "10 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          labels:
+            app: webanno
+            backup: webanno
+            parent: "webanno-backup"
+        spec:
+          affinity:
+            podAffinity:
+              requiredDuringSchedulingIgnoredDuringExecution:
+              - labelSelector:
+                  matchExpressions:
+                  - key: deploymentconfig
+                    operator: In
+                    values:
+                    - webanno
+                topologyKey: kubernetes.io/hostname
+          containers:
+            - env:
+                - name: BACKUP_NAME
+                  value: webanno-files
+                - name: BACKUP_RETAIN
+                  value: '6'
+                - name: BACKUP_ROTATION
+                  value: hourly
+              image: 'docker.io/hsci/rsnapshot-openshift:latest'
+              imagePullPolicy: Always
+              name: rsnapshot
+              volumeMounts:
+                - mountPath: /data/
+                  name: webanno-files
+                  readOnly: true
+                - mountPath: /backup/
+                  name: backup
+          restartPolicy: OnFailure
+          volumes:
+            - name: webanno-files
+              persistentVolumeClaim:
+                claimName: webanno-files
+            - name: backup
+              persistentVolumeClaim:
+                claimName: backup
+
