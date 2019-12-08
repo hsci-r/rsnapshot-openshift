@@ -77,7 +77,7 @@ objects:
               containers:
                 - env:
                     - name: BACKUP_NAME
-                      value: ${BACKUP_NAME}
+                      value: ${DATA_VOLUME}
                     - name: BACKUP_RETAIN
                       value: ${RETAIN_HOURLY}
                     - name: BACKUP_ROTATION
@@ -131,7 +131,7 @@ objects:
               containers:
                 - env:
                     - name: BACKUP_NAME
-                      value: ${BACKUP_NAME}
+                      value: ${DATA_VOLUME}
                     - name: BACKUP_RETAIN
                       value: ${RETAIN_DAILY}
                     - name: BACKUP_ROTATION
@@ -185,7 +185,7 @@ objects:
               containers:
                 - env:
                     - name: BACKUP_NAME
-                      value: ${BACKUP_NAME}
+                      value: ${DATA_VOLUME}
                     - name: BACKUP_RETAIN
                       value: ${RETAIN_WEEKLY}
                     - name: BACKUP_ROTATION
@@ -239,7 +239,7 @@ objects:
               containers:
                 - env:
                     - name: BACKUP_NAME
-                      value: ${BACKUP_NAME}
+                      value: ${DATA_VOLUME}
                     - name: BACKUP_RETAIN
                       value: ${RETAIN_MONTHLY}
                     - name: BACKUP_ROTATION
@@ -293,7 +293,7 @@ objects:
               containers:
                 - env:
                     - name: BACKUP_NAME
-                      value: ${BACKUP_NAME}
+                      value: ${DATA_VOLUME}
                     - name: BACKUP_RETAIN
                       value: ${RETAIN_YEARLY}
                     - name: BACKUP_ROTATION

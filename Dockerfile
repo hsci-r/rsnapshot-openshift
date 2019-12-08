@@ -1,4 +1,4 @@
-FROM alpine
+FROM jefferyb/openshift-alpine
 
 MAINTAINER Eetu Mäkelä <eetu.makela@helsinki.fi>
 
