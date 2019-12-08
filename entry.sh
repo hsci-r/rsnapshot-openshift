@@ -53,5 +53,7 @@ if [ "${BACKUP_ROTATION}" == "hourly" ] || ([ "${BACKUP_HOURLY}" -eq 0 ] && [ "$
 then
 /usr/bin/rsnapshot -c /tmp/rsnapshot.conf sync
 fi
+if [ "${BACKUP_ROTATION}" != "none" ]
+then
 /usr/bin/rsnapshot -c /tmp/rsnapshot.conf ${BACKUP_ROTATION}
-
+fi
