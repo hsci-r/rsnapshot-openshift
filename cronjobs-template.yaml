@@ -78,8 +78,16 @@ objects:
                 - env:
                     - name: BACKUP_NAME
                       value: ${DATA_VOLUME}
-                    - name: BACKUP_RETAIN
+                    - name: BACKUP_HOURLY
                       value: ${RETAIN_HOURLY}
+                    - name: BACKUP_DAILY
+                      value: ${RETAIN_DAILY}
+                    - name: BACKUP_WEEKLY
+                      value: ${RETAIN_WEEKLY}
+                    - name: BACKUP_MONTHLY
+                      value: ${RETAIN_MONTHLY}
+                    - name: BACKUP_YEARLY
+                      value: ${RETAIN_YEARLY}
                     - name: BACKUP_ROTATION
                       value: hourly
                   image: "docker.io/hsci/rsnapshot-openshift:latest"
@@ -132,8 +140,16 @@ objects:
                 - env:
                     - name: BACKUP_NAME
                       value: ${DATA_VOLUME}
-                    - name: BACKUP_RETAIN
+                    - name: BACKUP_HOURLY
+                      value: ${RETAIN_HOURLY}
+                    - name: BACKUP_DAILY
                       value: ${RETAIN_DAILY}
+                    - name: BACKUP_WEEKLY
+                      value: ${RETAIN_WEEKLY}
+                    - name: BACKUP_MONTHLY
+                      value: ${RETAIN_MONTHLY}
+                    - name: BACKUP_YEARLY
+                      value: ${RETAIN_YEARLY}
                     - name: BACKUP_ROTATION
                       value: daily
                   image: "docker.io/hsci/rsnapshot-openshift:latest"
@@ -186,8 +202,16 @@ objects:
                 - env:
                     - name: BACKUP_NAME
                       value: ${DATA_VOLUME}
-                    - name: BACKUP_RETAIN
+                    - name: BACKUP_HOURLY
+                      value: ${RETAIN_HOURLY}
+                    - name: BACKUP_DAILY
+                      value: ${RETAIN_DAILY}
+                    - name: BACKUP_WEEKLY
                       value: ${RETAIN_WEEKLY}
+                    - name: BACKUP_MONTHLY
+                      value: ${RETAIN_MONTHLY}
+                    - name: BACKUP_YEARLY
+                      value: ${RETAIN_YEARLY}
                     - name: BACKUP_ROTATION
                       value: weekly
                   image: "docker.io/hsci/rsnapshot-openshift:latest"
@@ -240,8 +264,16 @@ objects:
                 - env:
                     - name: BACKUP_NAME
                       value: ${DATA_VOLUME}
-                    - name: BACKUP_RETAIN
+                    - name: BACKUP_HOURLY
+                      value: ${RETAIN_HOURLY}
+                    - name: BACKUP_DAILY
+                      value: ${RETAIN_DAILY}
+                    - name: BACKUP_WEEKLY
+                      value: ${RETAIN_WEEKLY}
+                    - name: BACKUP_MONTHLY
                       value: ${RETAIN_MONTHLY}
+                    - name: BACKUP_YEARLY
+                      value: ${RETAIN_YEARLY}
                     - name: BACKUP_ROTATION
                       value: monthly
                   image: "docker.io/hsci/rsnapshot-openshift:latest"
@@ -294,7 +326,15 @@ objects:
                 - env:
                     - name: BACKUP_NAME
                       value: ${DATA_VOLUME}
-                    - name: BACKUP_RETAIN
+                    - name: BACKUP_HOURLY
+                      value: ${RETAIN_HOURLY}
+                    - name: BACKUP_DAILY
+                      value: ${RETAIN_DAILY}
+                    - name: BACKUP_WEEKLY
+                      value: ${RETAIN_WEEKLY}
+                    - name: BACKUP_MONTHLY
+                      value: ${RETAIN_MONTHLY}
+                    - name: BACKUP_YEARLY
                       value: ${RETAIN_YEARLY}
                     - name: BACKUP_ROTATION
                       value: monthly

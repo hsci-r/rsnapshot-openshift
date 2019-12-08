@@ -21,13 +21,35 @@ ssh_args	-i /ssh-id -o StrictHostKeychecking=no ${BACKUP_SSH_ARGS}
 verbose		3
 lockfile	/tmp/rsnapshot.pid
 backup		${BACKUP_SOURCE}	.	${BACKUP_OPTS}
-retain		${BACKUP_ROTATION}	${BACKUP_RETAIN}
 EOF
+
+# Dynamic parts - depending on the retain settings
+# This will also create the crontab
+if [ "${BACKUP_HOURLY}" -gt 0 ]
+then
+  echo "retain	hourly	${BACKUP_HOURLY}">> /tmp/rsnapshot.conf
+fi
+if [ "${BACKUP_DAILY}" -gt 0 ]
+then
+  echo "retain	daily	${BACKUP_DAILY}">> /tmp/rsnapshot.conf
+fi
+if [ "${BACKUP_WEEKLY}" -gt 0 ]
+then
+  echo "retain	weekly	${BACKUP_WEEKLY}">> /tmp/rsnapshot.conf
+fi
+if [ "${BACKUP_MONTHLY}" -gt 0 ]
+then
+  echo "retain	monthly	${BACKUP_MONTHLY}">> /tmp/rsnapshot.conf
+fi
+if [ "${BACKUP_YEARLY}" -gt 0 ]
+then
+  echo "retain	yearly	${BACKUP_YEARLY}">> /tmp/rsnapshot.conf
+fi
 
 # Add the user-provided config file
 cat /backup.cfg >> /tmp/rsnapshot.conf
 
-if [ "${BACKUP_SYNC}" != "" ] || [ "${BACKUP_ROTATION}" == "hourly" ]
+if [ "${BACKUP_ROTATION}" == "hourly" ] || ([ "${BACKUP_HOURLY}" -eq 0 ] && [ "${BACKUP_ROTATION}" == "daily" ]) || ([ "${BACKUP_HOURLY}" -eq 0 ] && [ "${BACKUP_DAILY}" -eq 0 ] && [ "${BACKUP_ROTATION}" == "weekly" ]) || ([ "${BACKUP_HOURLY}" -eq 0 ] && [ "${BACKUP_DAILY}" -eq 0 ] && [ "${BACKUP_WEEKLY}" -eq 0 ] && [ "${BACKUP_ROTATION}" == "monthly" ]) || ([ "${BACKUP_HOURLY}" -eq 0 ] && [ "${BACKUP_DAILY}" -eq 0 ] && [ "${BACKUP_ROTATION}" == "weekly" ]) || ([ "${BACKUP_HOURLY}" -eq 0 ] && [ "${BACKUP_DAILY}" -eq 0 ] && [ "${BACKUP_WEEKLY}" -eq 0 ] && [ "${BACKUP_MONTHLY}" -eq 0 ] && [ "${BACKUP_ROTATION}" == "yearly" ])
 then
 /usr/bin/rsnapshot -c /tmp/rsnapshot.conf sync
 fi
