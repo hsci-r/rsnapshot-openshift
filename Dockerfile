@@ -19,7 +19,7 @@ USER root
 
 RUN touch /ssh-id && touch /backup.cfg
 
-RUN apk add --update rsnapshot tzdata
+RUN apk add --update rsnapshot tzdata coreutils
 
 USER 10001
 
